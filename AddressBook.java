@@ -1,15 +1,36 @@
 package com.bridgelabz;
 
-public class AddressBook {
+import java.util.HashMap;
+import java.util.Scanner;
 
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
-    private String state;
-    private long zip;
-    private long phoneNumber;
-    private String Email;
+public class AddressBook{
+    static String name;
+    static boolean is_Running=false;
+
+    public static void main(String[] args){
+
+        System.out.println("Welcome to the ADDRESS BOOK");
+        HashMap<String,ContactInfo> addressBook = new HashMap<>();
+
+        while (!is_Running) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter 1 to create a new contact and 2 to exit");
+            int choice = scanner.nextInt();
+            if (choice == 1) {
+                ContactInfo contact = new ContactInfo();
+                contact.setContactInfo();
+                name = contact.firstName + " " + contact.lastName;
+                addressBook.put(name, contact);
+                addressBook.get(name).displayContactInfo();
+            }else if (choice==2){
+                is_Running = true;
+            }
+        }
+    }
+}
+
+class ContactInfo{
+    String firstName,lastName,address,city,state,zipcode,phoneNo,email;
 
     public String getFirstName() {
         return firstName;
@@ -51,50 +72,47 @@ public class AddressBook {
         this.state = state;
     }
 
-    public long getZip() {
-        return zip;
+    public String getZipcode() {
+        return zipcode;
     }
 
-    public void setZip(long zip) {
-        this.zip = zip;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
-    public long getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    public static void main(String[] args) {
-        AddressBook myEntry = new AddressBook();
-        myEntry.setFirstName("Saurabh");
-        myEntry.setLastName("Jain");
-        myEntry.setAddress("Jain calony");
-        myEntry.setCity("bhopal");
-        myEntry.setState("mp");
-        myEntry.setZip(462001);
-        myEntry.setPhoneNumber(987654321);
-        myEntry.setEmail("saurabh08@gmail.com");
-        System.out.println("my name is :"+ myEntry.getFirstName());
-        System.out.println("my last  name is :"+ myEntry.getLastName());
-        System.out.println("Address is :" + myEntry.getAddress());
-        System.out.println("city is :" + myEntry.getCity());
-        System.out.println("state is :" + myEntry.getState());
-        System.out.println("zip is :" + myEntry.getZip());
-        System.out.println("Email is :"+ myEntry.getEmail());
-        System.out.println("Phone number is :" + myEntry.getPhoneNumber());
-    }
+    public void setContactInfo() {
 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter First Name: \n Last Name: \n Address: \n City: \n State: \n Zipcode: \n PhoneNO: \n Email: \n");
+        setFirstName(sc.nextLine());
+        setLastName(sc.nextLine());
+        setAddress(sc.nextLine());
+        setCity(sc.nextLine());
+        setState(sc.nextLine());
+        setZipcode(sc.nextLine());
+        setPhoneNo(sc.nextLine());
+        setEmail(sc.nextLine());
+    }
+    public void displayContactInfo(){
+        System.out.print(" First Name: "+firstName+"\n Last Name: "+lastName+"\n Address: "+address+
+                "\n City: "+city+"\n State: "+state+ "\n Zipcode: "+zipcode+"\n PhoneNO: "+phoneNo+"\n Email: "+email+"\n");
+    }
 }
 
 
@@ -123,46 +141,6 @@ public class AddressBook {
 
 
 
-
-
-
-
-
-
-
-
-
-//        ABS myEntry= new ABS();
-//        String firstName="bridgelabz" ;
-//        String lastName="RFP-169" ;
-//        String address="mango";
-//        String city="jsr";
-//        String state="jharkhand";
-//        long zip=021;
-//
-//        long phoneNumber = 1256234581;
-//        String Email="mango@123.gmAIL.Com";
-//
-//
-//
-//        myEntry.setFirstName(firstName);
-//        myEntry.setLastName(lastName);
-//        myEntry.setAddress(address);
-//        myEntry.setCity(city);
-//        myEntry.setZip(zip);
-//        myEntry.setEmail(Email);
-//        myEntry.setPhoneNumber(phoneNumber);
-//        myEntry.setState(address);
-//
-//
-//
-//        System.out.println("My name is :"+ myEntry.getFirstName());
-//        System.out.println("My Last name is"+myEntry.getLastName());
-//        System.out.println("adress is "+myEntry.getAddress());
-//        System.out.println("city is"+myEntry.getCity());
-//        System.out.println("phone number is"+myEntry.getPhoneNumber());
-//        System.out.println("state is"+myEntry.getState());
-//        System.out.println("zip number is"+myEntry.getZip());
 
 
 
