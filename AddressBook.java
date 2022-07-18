@@ -77,14 +77,7 @@ public class AddressBook {
 
     public static void main(String[] args) {
         AddressBook myEntry = new AddressBook();
-        myEntry.setFirstName("Saurabh");
-        myEntry.setLastName("Jain");
-        myEntry.setAddress("Jain calony");
-        myEntry.setCity("bhopal");
-        myEntry.setState("mp");
-        myEntry.setZip(462001);
-        myEntry.setPhoneNumber(987654321);
-        myEntry.setEmail("saurabh08@gmail.com");
+    
         System.out.println("my name is :"+ myEntry.getFirstName());
         System.out.println("my last  name is :"+ myEntry.getLastName());
         System.out.println("Address is :" + myEntry.getAddress());
