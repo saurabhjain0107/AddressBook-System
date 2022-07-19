@@ -17,7 +17,7 @@ public class AddressBook{
 
         while (!is_Running) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println(" Enter 1 to create a new contact \n 2 to exit \n 3 to edit existing contact \n 4 to delete an existing contact");
+            System.out.println("Enter 1 to create a new contact \n 2 to exit \n 3 to edit existing contact \n 4 to delete an existing contact");
             int choice = scanner.nextInt();
             if (choice == 1) {
                 ContactInfo contact = new ContactInfo();
