@@ -1,99 +1,107 @@
 package com.bridgelabz;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class AddressBook{
     static String name;
     static boolean is_Running=false;
+    static  HashMap<String,ContactInfo> addressBook = new HashMap<>();
 
     public static void main(String[] args){
 
+        AddressBook addressBookObj = new AddressBook();
         System.out.println("Welcome to the ADDRESS BOOK");
-        HashMap<String,ContactInfo> addressBook = new HashMap<>();
+
 
         while (!is_Running) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter 1 to create a new contact and 2 to exit");
+            System.out.println("Enter 1 to create a new contact , 2 to exit , 3 to edit existing contact");
             int choice = scanner.nextInt();
             if (choice == 1) {
                 ContactInfo contact = new ContactInfo();
                 contact.setContactInfo();
-                name = contact.firstName + " " + contact.lastName;
+                name = contact.firstName.toUpperCase(Locale.ROOT) + " " + contact.lastName.toUpperCase(Locale.ROOT);
                 addressBook.put(name, contact);
                 addressBook.get(name).displayContactInfo();
             }else if (choice==2){
                 is_Running = true;
+            }else if (choice==3){
+                addressBookObj.editContact();
+                addressBook.get(name).displayContactInfo();
             }
         }
+    }
+
+
+    public void editContact(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your first name and Last name  : ");
+        String name = sc.nextLine().toUpperCase(Locale.ROOT);
+        if(addressBook.containsKey(name)) {
+            System.out.println("Enter the number you want to edit\n1.Address\n2.City\n3.State\n4.Zipcode\n5.Phone Number\n6.Email");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number){
+                case 1 -> {
+                    System.out.println("Enter new Address");
+                    addressBook.get(name).setAddress(sc.nextLine());
+                }
+                case 2 -> {
+                    System.out.println("Enter new City");
+                    addressBook.get(name).setCity(sc.nextLine());
+                }
+                case 3 -> {
+                    System.out.println("Enter new State");
+                    addressBook.get(name).setState(sc.nextLine());
+                }
+                case 4 -> {
+                    System.out.println("Enter new ZipCode");
+                    addressBook.get(name).setZipcode(sc.nextLine());
+                }
+                case 5 -> {
+                    System.out.println("Enter new Phone number");
+                    addressBook.get(name).setPhoneNo(sc.nextLine());
+                }
+                case 6 -> {
+                    System.out.println("Enter new Email");
+                    addressBook.get(name).setEmail(sc.nextLine());
+                }
+                default -> System.out.println("Please input a valid number (1-6)");
+            }
+        }else System.out.println("Contact not found");
+
     }
 }
 
 class ContactInfo{
     String firstName,lastName,address,city,state,zipcode,phoneNo,email;
 
-    public String getFirstName() {
-        return firstName;
+    public void setFirstName(String firstName){
+        this.firstName=firstName;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setLastName(String lastName){
+        this.lastName=lastName;
     }
-
-    public String getLastName() {
-        return lastName;
+    public void setAddress(String address){
+        this.address=address;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCity(String city){
+        this.city=city;
     }
-
-    public String getAddress() {
-        return address;
+    public void setState(String state){
+        this.state=state;
     }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setZipcode(String zipcode){
+        this.zipcode=zipcode;
     }
-
-    public String getCity() {
-        return city;
+    public void setPhoneNo(String phoneNo){
+        this.phoneNo=phoneNo;
     }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email){
+        this.email=email;
     }
 
     public void setContactInfo() {
@@ -114,33 +122,3 @@ class ContactInfo{
                 "\n City: "+city+"\n State: "+state+ "\n Zipcode: "+zipcode+"\n PhoneNO: "+phoneNo+"\n Email: "+email+"\n");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
